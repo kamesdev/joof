@@ -1,7 +1,4 @@
-
-<div class="background>
-<img src="public/logo-light.svg"></img>
-</div>
+ ![Joof logo!](public/logo-light.svg)
 
  ### Open source **e-commerce platform** that allows users to **BUY** and **SELL** products using cryptocurrencies.
 
