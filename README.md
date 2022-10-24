@@ -13,7 +13,7 @@
 
 ## Resources
 
-The project is based on this [Figma Prototoype]('https://www.figma.com/file/eCtcFUSVhlMBxPtT37CRes/ECOM%F0%9F%9A%80-(Copy)?node-id=202%3A1391')
+The project is based on this [Figma Prototoype](https://www.figma.com/file/eCtcFUSVhlMBxPtT37CRes/ECOM%F0%9F%9A%80-(Copy)?node-id=202%3A1391)
 
 
 ### ⚠️ PAY ATTENTION: This is just a **<ins>temporary</ins>** README file. More detailed one soon.
