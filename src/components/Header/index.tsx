@@ -1,53 +1,349 @@
+import { ArrowLeftIcon, ArrowLeftOnRectangleIcon, ArrowRightIcon, BellIcon, ChartBarIcon, ChatBubbleLeftEllipsisIcon, Cog6ToothIcon, CubeIcon, CurrencyDollarIcon, MagnifyingGlassIcon, MoonIcon, QueueListIcon, ShoppingCartIcon, TagIcon, UserCircleIcon, UserIcon, XCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NextPage } from 'next'
+import Image from 'next/image'
+import { useState, Fragment } from 'react'
+import { Transition, Dialog } from '@headlessui/react'
+import Link from 'next/link'
+import { FC } from 'react'
 
 interface Props {}
 
-const Header: React.FC<Props> = ({}) => {
-  return <div className="border fixed flex p-4 gap-2 inset-x-0 top-0 bg-white">
+const Header: FC<Props> = ({}) => {
 
-    <div className="">
-        <svg className="w-10" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="42" height="42" rx="6.00469" fill="#2563EB"/>
-            <path d="M24.5389 31.6323C25.4813 31.0883 25.8042 29.8832 25.2601 28.9409C24.716 27.9985 23.511 27.6756 22.5686 28.2197C21.6263 28.7638 21.3034 29.9688 21.8474 30.9112C22.3915 31.8535 23.5965 32.1764 24.5389 31.6323Z" fill="#F8FAFC"/>
-            <path d="M32.827 26.8474C33.7694 26.3033 34.0923 25.0983 33.5482 24.156C33.0041 23.2136 31.7991 22.8907 30.8567 23.4348C29.9143 23.9789 29.5915 25.1839 30.1355 26.1262C30.6796 27.0686 31.8846 27.3915 32.827 26.8474Z" fill="#F8FAFC"/>
-            <path d="M6.00488 16.9819L12.0814 17.3738L20.7113 26.6919L30.4617 21.0625L28.1143 11.3673L18.8515 16.7153M21.3847 21.1029L29.185 16.5994" stroke="#F8FAFC" stroke-width="3.00235" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+    const [isSearchPopoverOpen, setIsSearchPopoverOpen] = useState(false)
+    const [isNavOpen, setIsNavOpen] = useState(false)
+
+    const openNav = () => {
+        setIsNavOpen(true)
+    }
+
+    const closeNav = () => {
+        setIsNavOpen(false)
+    }
+
+    const openSearchPopover = () => {
+        setIsSearchPopoverOpen(true)
+    }
+
+    const closeSearchPopover = () => setIsSearchPopoverOpen(false)
+
+    return <div className="fixed p-2 gap-2 inset-x-0 top-0 bg-white sm:p-3">
+
+    {/* Desktop Nav */}
+    <Transition appear show={isNavOpen} as={Fragment}>
+
+        <Dialog as="div" onClose={closeNav}>
+
+            {/* Backdrop Overlay */}
+            <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
+            >
+
+                <div className="fixed inset-0 bg-slate-600 bg-opacity-50 backdrop-blur-sm" aria-hidden={true}></div>
+
+            </Transition.Child>
+
+            <div className="fixed inset-0 z-10 hidden sm:block overflow-hidden">
+
+                <div className="fixed inset-0 flex justify-end ">
+
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-200"
+                        enterFrom=" translate-x-full"
+                        enterTo=" translate-x-0"
+                        leave="ease-in duration-200"
+                        leaveFrom=" translate-x-0"
+                        leaveTo=" translate-x-full"
+                    >
+
+                        <Dialog.Panel className="flex flex-col m-2  w-full max-w-xs">       
+                            
+                            {/* Close Button */}
+                            
+
+                            <div className="bg-white text-lg rounded-2xl  flex flex-col p-4 h-full text-slate-600">
+                                <button className="absolute right-4 top-4 hover:bg-white p-1.5 rounded-full " onClick={closeNav}>
+                                    <XMarkIcon className="w-8 h-8" />
+                                </button>
+
+                                <div className="flex flex-col gap-1 overflow-auto">
+
+                                        <Link href="">
+                                            <a className="flex items-center  rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div className="w-9 h-9 bg-gradient-to-br from-red-500 to-violet-400 rounded-lg">
+                                                </div>
+                                                <p className="text-lg ml-2 font-bold">kamesdev</p>
+
+                                            </a>  
+                                        </Link>
+
+                                    <div className="mt-4">
+
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <UserCircleIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">My Profile</p>
+                                            </a>
+                                        </Link>
+
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <TagIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">My Purchases</p>
+                                            </a>
+                                        </Link>
+
+
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Link href="/">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <CubeIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">Products</p>
+                                            </a>    
+                                        </Link>
+
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <QueueListIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">Orders</p>
+                                            </a>
+                                        </Link>
+
+
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <CurrencyDollarIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">Balances</p>
+                                            </a>
+                                        </Link>
+
+                                        
+                                        <Link href="">        
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <ChartBarIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">Analytics</p>
+                                            </a>
+                                        </Link>
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div>
+                                                    <Cog6ToothIcon className="w-8 h-8" />
+                                                </div>
+                                                <p className="text-lg ml-2">Settings</p>
+                                            </a>
+                                        </Link>
+
+                                        <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div className="w-8 h-8">
+                                                    <MoonIcon  />
+                                                </div>
+
+
+                                                <p className="text-lg ml-2">Dark Mode</p>
+                                            </a>
+                                        </Link>
+
+                                    <Link href="">
+                                            <a className="flex items-center rounded-lg bg-white hover:bg-slate-100 hover:cursor-pointer p-2">
+                                                <div className="w-8 h-8">
+                                                    <ArrowLeftOnRectangleIcon />
+                                                </div>
+                                                <p className="text-lg ml-2">Logout</p>
+                                            </a>
+
+                                        </Link>
+                                    </div>
+                                </div>  
+
+                                <button
+                                    className="border font-semibold border-blue-600/50 p-2 mt-auto rounded-lg text-blue-600"
+                                >Create Product</button>
+
+                            </div>
+
+                        </Dialog.Panel>
+
+                    </Transition.Child>
+
+
+
+                </div>
+
+            </div>
+
+        </Dialog>
+
+    </Transition>
+
+    {/* Search Mobile */}
+    <Dialog as="div" onClose={closeSearchPopover} open={isSearchPopoverOpen}>
+        <div className="fixed inset-0 z-20 backdrop-blur-md bg-white">
+            <div className="flex w-full h-full flex-col">
+
+                <div className="items-center flex p-2 px-4 gap-2 w-full top-0 ">
+
+                    <button className="w-6 h-6" onClick={closeSearchPopover}>
+                        <ArrowLeftIcon />
+                    </button>
+                    
+                    <div className="relative w-full h-full text-blue-900">
+
+                        <div className="absolute flex h-full w-6 right-3 grou">
+                            <MagnifyingGlassIcon stroke="currentColor" />
+                        </div>
+
+                        <input placeholder="Search products" type="search" autoFocus={true} className="bg-slate-100 p-3 pr-12 w-full rounded-lg focus:outline-blue-600 focus:bg-white" />
+
+                    </div>
+
+                </div>
+
+                <div className="p-4">
+                    <h2>Recent Searches</h2>
+
+                    <div className="flex items-center py-3 text-slate-600">
+                        <div className="w-6 h-6">
+                            <MagnifyingGlassIcon />
+                        </div>
+                        <p className="font-semibold ml-2">
+                            ebook
+                        </p>
+
+                        <div className="ml-auto w-6 h-6">
+                            <XMarkIcon />
+                        </div>
+                    </div>
+
+                    <div className="flex items-center py-3 text-slate-600">
+                        <div className="w-6 h-6">
+                            <MagnifyingGlassIcon />
+                        </div>
+                        <p className="font-semibold ml-2">
+                            ebook
+                        </p>
+
+                        <div className="ml-auto w-6 h-6">
+                            <XMarkIcon />
+                        </div>
+                    </div>
+
+                    <div className="flex items-center py-3 text-slate-600">
+                        <div className="w-6 h-6">
+                            <MagnifyingGlassIcon />
+                        </div>
+                        <p className="font-semibold ml-2">
+                            ebook
+                        </p>
+
+                        <div className="ml-auto w-6 h-6">
+                            <XMarkIcon />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Dialog>
+
+    {/* Menu */}
+    <div className="w- flex max-w-screen-xl m-auto text-slate-600 items-center">
+
+        <Link href="/">
+            <a className="block flex-shrink-0">
+                <img 
+                    alt='Logo'
+                    src='/logo-dark.svg'
+                    className="w-auto h-12"
+                />
+            </a>
+        </Link>
+
+        <div className="hidden md:flex mx-8 w-full max-w-screen-sm h-fit">
+
+            <div className="relative w-full h-full text-blue-900">
+
+            <div className="absolute flex h-full w-6 right-3">
+                <MagnifyingGlassIcon stroke="currentColor"/>
+            </div>
+
+            <input placeholder="Search products" type="search" autoFocus={true} className="bg-slate-100 p-3 pr-12 w-full rounded-lg focus:outline-blue-600 focus:bg-white" />
+
+            </div>
+
+        </div>
+
+        <button 
+            onClick={openSearchPopover}
+            className="md:hidden ml-auto relative px-3 flex items-center justify-items-center rounded-lg transition-all hover:bg-slate-100 cursor-pointer">
+            <div className="w-6 h-6">
+                <MagnifyingGlassIcon />
+            </div>
+        </button>
+
+        <button className="hidden mr-2 lg:block md:ml-auto px-4 py-2 self-center bg-blue-600/5 text-blue-600 rounded-lg font-semibold">
+            Create
+        </button>
+
+        <button className="hidden sm:flex md:ml-0 relative p-3 items-center justify-items-center hover:bg-slate-100 rounded-lg">
+            <div className="w-6 h-6">
+                <ShoppingCartIcon />
+            </div>
+            <div className="absolute text-[10px] top-1 right-1 bg-red-500 w-4 h-4 leading-4 text-white text-center rounded-md">
+                2
+            </div>
+        </button>
+
+        <button className=" relative p-3 flex items-center justify-items-center  hover:bg-slate-100 rounded-lg">
+            <div className="w-6 h-6">
+                <BellIcon />
+            </div>
+            <div className="absolute text-[10px] top-1 right-1 bg-red-500 w-4 h-4 leading-4 text-white text-center rounded-md">
+                2
+            </div>
+        </button>
+
+        <button className="relative p-3 flex items-center justify-items-center hover:bg-slate-100 rounded-lg">
+            <div className="w-6 h-6">
+                <ChatBubbleLeftEllipsisIcon />
+            </div>
+            <div className="absolute top-1 right-1 text-[10px] bg-red-500 w-4 h-4 leading-4 text-white text-center rounded-md">
+                1
+            </div>
+        </button>
+
+        <button 
+            onClick={openNav}
+            className="hidden sm:flex  items-center p-3 hover:bg-slate-100 rounded-lg">
+            <div className="bg-gradient-to-br from-green-400 to-blue-500 l rounded-lg w-8 h-8 ">
+            </div>
+        </button>
     </div>
 
-    <div className="relative text-slate-500 w-full">
-        <div className="absolute h-full">
-            <svg className="ml-2 w-5 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-        </div>
-        <input 
-            type="search" 
-            placeholder="Search" 
-            className="rounded-lg pl-8 p-2 bg-slate-100 text-current w-full" />
-    </div>
-
-    <div className="relative px-2 flex items-center justify-items-center rounded-lg">
-        <div className="">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-            </svg>
-        </div>
-        <div className="absolute text-[10px] top-0.5 right-0.5 bg-red-500 w-4 h-4 leading-4 text-white text-center rounded-md">
-            2
-        </div>
-    </div>
-
-    <div className="relative px-2 flex items-center justify-items-center rounded-lg">
-        <div className="">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-            </svg>
-
-        </div>
-        <div className="absolute top-0.5 right-0.5 text-[10px] bg-red-500 w-4 h-4 leading-4 text-white text-center rounded-md">
-            1
-        </div>
-    </div>
+    
 
   </div>
 }
