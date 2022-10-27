@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +15,18 @@ const Home: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 ">
-        <h1 className="text-5xl font-semibold">Starter project</h1>
-      </main>
+      {/* <Header /> */}
+      <Nav />
+      <div className="bg-slate-300">
+        <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 ">
+          <h1 className="text-5xl font-semibold leading-tight tracking-tight">Buy and Sell digital goods with 0% fees</h1>
+        </main>
+        <img 
+            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+            width=""
+          />
+
+      </div>
     </>
   );
 };
